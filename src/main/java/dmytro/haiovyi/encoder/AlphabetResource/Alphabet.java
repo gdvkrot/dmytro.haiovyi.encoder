@@ -22,7 +22,7 @@ public class Alphabet {
             case ENGLISH -> "abcdefghijklmnopqrstuvwxyz".toCharArray();
             case UKRAINIAN -> "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя".toCharArray();
             case RUSSIAN -> "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toCharArray();
-            default -> "abcdefghijklmnopqrstuvwxyz".toCharArray();
+            default -> throw new IllegalArgumentException("localeLanguage - unknown value!");
         };
 
         if (flagToUpperCase) {

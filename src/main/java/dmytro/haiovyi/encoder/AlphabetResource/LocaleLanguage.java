@@ -7,25 +7,25 @@ public enum LocaleLanguage {
     RUSSIAN(new Locale("ru", "RUS")),
     ENGLISH(new Locale("en", "US"));
 
-    private final Locale mLocale;
+    private final Locale locale;
 
     LocaleLanguage(Locale locale) {
-        this.mLocale = locale;
+        this.locale = locale;
     }
 
-    Locale getLocale() {
-        return mLocale;
+    public Locale getLocale() {
+        return locale;
     }
 
-    String getDisplayLanguage() {
+    public String getDisplayLanguage() {
         return getLocale().getDisplayLanguage();
     }
 
-    String getDisplayLanguage(LocaleLanguage locale) {
+    public String getDisplayLanguage(LocaleLanguage locale) {
         return getLocale().getDisplayLanguage(locale.getLocale());
     }
 
-    static LocaleLanguage getLocalLanguage(Locale locale) {
+    public static LocaleLanguage getLocalLanguage(Locale locale) {
         if (locale == null)
             return LocaleLanguage.ENGLISH;
 
