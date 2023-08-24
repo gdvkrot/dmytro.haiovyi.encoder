@@ -71,7 +71,7 @@ public class FileService implements IFileService {
                 writer.newLine();
                 cliService.printMessage("Line written to file: " + line);
             }
-            //writer.flush();
+            writer.flush();
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
