@@ -1,7 +1,7 @@
 package dmytro.haiovyi.encoder;
 
-import dmytro.haiovyi.encoder.AlphabetResource.Alphabet;
-import dmytro.haiovyi.encoder.AlphabetResource.LocaleLanguage;
+import dmytro.haiovyi.encoder.alphabetResource.Alphabet;
+import dmytro.haiovyi.encoder.alphabetResource.LocaleLanguage;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -9,22 +9,29 @@ import java.util.ArrayList;
 public class Runner {
     private final ICLIService cliService;
     private final IFileService fileService;
-    private final ICaesarCipherService caesarCipherService;
+    private final ICaesarCipherLatinService caesarCipherLatinService;
+    private final ICaesarCipherCyrilicService caesarCipherCyrilicService;
 
-    public Runner(ICLIService cliService, IFileService fileService, ICaesarCipherService caesarCipherService) {
+    public Runner(ICLIService cliService, IFileService fileService,
+                  ICaesarCipherLatinService caesarCipherLatinService,
+                  ICaesarCipherCyrilicService caesarCipherCyrilicService) {
         if (cliService == null) {
             throw new IllegalArgumentException("cliService - null value!");
         }
         if (fileService == null) {
             throw new IllegalArgumentException("fileService - null value!");
         }
-        if (caesarCipherService == null) {
-            throw new IllegalArgumentException("caesarCipherService - null value!");
+        if (caesarCipherLatinService == null) {
+            throw new IllegalArgumentException("caesarCipherLatinService - null value!");
+        }
+        if (caesarCipherCyrilicService == null) {
+            throw new IllegalArgumentException("caesarCipherCyrilicService - null value!");
         }
 
         this.cliService = cliService;
         this.fileService = fileService;
-        this.caesarCipherService = caesarCipherService;
+        this.caesarCipherLatinService = caesarCipherLatinService;
+        this.caesarCipherCyrilicService = caesarCipherCyrilicService;
     }
 
     public void executeWithCLIParams(String fileName, String inputMode, String inputLanguage, String inputKey) {
@@ -73,18 +80,25 @@ public class Runner {
 
     private void execute(Mode mode, String filePath, int key, LocaleLanguage language) {
         ArrayList<String> rawStrings = fileService.readFileAsStringCollection(filePath);
-        ArrayList<String> resultStrings = new ArrayList<String>(rawStrings.size());
-        int alphabetSize = new Alphabet().getAlphabet(language, true).length;
+        var resultStrings = new ArrayList<String>();
+
+        Alphabet currentAlphabet = new Alphabet();
+
+        int alphabetSize = currentAlphabet.getAlphabet(language, true).length;
+        char firstLetterInUppercase = currentAlphabet.getAlphabet(language, true)[0];
+        char firstLetterInLowercase = currentAlphabet.getAlphabet(language, false)[0];
 
         switch (mode) {
             case ENCRYPT: {
                 if (language == LocaleLanguage.ENGLISH) {
                     for (String item : rawStrings) {
-                        resultStrings.add(caesarCipherService.encryptLatin(item, key, alphabetSize));
+                        resultStrings.add(caesarCipherLatinService.encrypt(
+                                item, key, alphabetSize, firstLetterInUppercase, firstLetterInLowercase));
                     }
                 } else {
                     for (String item : rawStrings) {
-                        resultStrings.add(caesarCipherService.encryptCyrilic(item, key, alphabetSize));
+                        resultStrings.add(caesarCipherCyrilicService.encrypt(
+                                item, key, alphabetSize, firstLetterInUppercase, firstLetterInLowercase));
                     }
                 }
                 break;
@@ -92,11 +106,13 @@ public class Runner {
             case DECRYPT: {
                 if (language == LocaleLanguage.ENGLISH) {
                     for (String item : rawStrings) {
-                        resultStrings.add(caesarCipherService.decryptLatin(item, key, alphabetSize));
+                        resultStrings.add(caesarCipherLatinService.decrypt(
+                                item, key, alphabetSize, firstLetterInUppercase, firstLetterInLowercase));
                     }
                 } else {
                     for (String item : rawStrings) {
-                        resultStrings.add(caesarCipherService.decryptCyrilic(item, key, alphabetSize));
+                        resultStrings.add(caesarCipherCyrilicService.decrypt(
+                                item, key, alphabetSize, firstLetterInUppercase, firstLetterInLowercase));
                     }
                 }
                 break;

@@ -35,7 +35,6 @@ public class FileService implements IFileService {
                 cliService.printMessage("File '" + filePath + "' is exists and can't to be created!");
             }
         } catch (Exception e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
@@ -56,7 +55,6 @@ public class FileService implements IFileService {
                 result.add(line);
             }
         } catch (Exception e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
 
@@ -73,7 +71,6 @@ public class FileService implements IFileService {
             }
             writer.flush();
         } catch (Exception e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }

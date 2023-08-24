@@ -1,4 +1,4 @@
-package dmytro.haiovyi.encoder.AlphabetResource;
+package dmytro.haiovyi.encoder.alphabetResource;
 
 import java.util.Locale;
 

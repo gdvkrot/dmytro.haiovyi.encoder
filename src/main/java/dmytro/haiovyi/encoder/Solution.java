@@ -2,12 +2,15 @@ package dmytro.haiovyi.encoder;
 
 public class Solution {
     public static void main(String[] args) {
+        final int CORRECT_COUNT_OF_ARGUMENTS = 4;
+
         ICLIService cliService = new CLIService();
         IFileService fileService = new FileService(cliService);
-        ICaesarCipherService caesarCipherService = new CaesarCipherService();
+        ICaesarCipherLatinService caesarCipherLatinService = new CaesarCipherLatinService();
+        ICaesarCipherCyrilicService caesarCipherCyrilicService = new CaesarCipherCyrilicService();
 
-        Runner runner = new Runner(cliService, fileService, caesarCipherService);
-        if (args.length < 4) {
+        Runner runner = new Runner(cliService, fileService, caesarCipherLatinService, caesarCipherCyrilicService);
+        if (args.length < CORRECT_COUNT_OF_ARGUMENTS) {
             runner.executeWithScannerParams();
         }
         else {
