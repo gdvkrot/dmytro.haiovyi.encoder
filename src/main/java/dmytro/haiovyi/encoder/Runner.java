@@ -12,6 +12,16 @@ public class Runner {
     private final ICaesarCipherService caesarCipherService;
 
     public Runner(ICLIService cliService, IFileService fileService, ICaesarCipherService caesarCipherService) {
+        if (cliService == null) {
+            throw new IllegalArgumentException("cliService - null value!");
+        }
+        if (fileService == null) {
+            throw new IllegalArgumentException("fileService - null value!");
+        }
+        if (caesarCipherService == null) {
+            throw new IllegalArgumentException("caesarCipherService - null value!");
+        }
+
         this.cliService = cliService;
         this.fileService = fileService;
         this.caesarCipherService = caesarCipherService;
