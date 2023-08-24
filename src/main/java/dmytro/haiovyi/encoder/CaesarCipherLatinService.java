@@ -1,6 +1,6 @@
 package dmytro.haiovyi.encoder;
 
-public class CaesarCipherLatinService implements ICaesarCipherLatinService {
+public class CaesarCipherLatinService implements ICaesarCipherService {
     @Override
     public String encrypt(String plaintext, int shift, int alphabetSize,
                                char firstLetterInUppercase, char firstLetterInLowercase) {

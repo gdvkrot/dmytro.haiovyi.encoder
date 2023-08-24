@@ -9,12 +9,12 @@ import java.util.ArrayList;
 public class Runner {
     private final ICLIService cliService;
     private final IFileService fileService;
-    private final ICaesarCipherLatinService caesarCipherLatinService;
-    private final ICaesarCipherCyrilicService caesarCipherCyrilicService;
+    private final ICaesarCipherService caesarCipherLatinService;
+    private final ICaesarCipherService caesarCipherCyrilicService;
 
     public Runner(ICLIService cliService, IFileService fileService,
-                  ICaesarCipherLatinService caesarCipherLatinService,
-                  ICaesarCipherCyrilicService caesarCipherCyrilicService) {
+                  ICaesarCipherService caesarCipherLatinService,
+                  ICaesarCipherService caesarCipherCyrilicService) {
         if (cliService == null) {
             throw new IllegalArgumentException("cliService - null value!");
         }

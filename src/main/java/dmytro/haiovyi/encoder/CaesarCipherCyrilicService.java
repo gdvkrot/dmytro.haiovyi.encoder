@@ -1,6 +1,6 @@
 package dmytro.haiovyi.encoder;
 
-public class CaesarCipherCyrilicService implements ICaesarCipherCyrilicService {
+public class CaesarCipherCyrilicService implements ICaesarCipherService {
     @Override
     public String encrypt(String plaintext, int shift, int alphabetSize,
                                  char firstLetterInUppercase, char firstLetterInLowercase) {

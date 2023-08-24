@@ -6,8 +6,8 @@ public class Solution {
 
         ICLIService cliService = new CLIService();
         IFileService fileService = new FileService(cliService);
-        ICaesarCipherLatinService caesarCipherLatinService = new CaesarCipherLatinService();
-        ICaesarCipherCyrilicService caesarCipherCyrilicService = new CaesarCipherCyrilicService();
+        ICaesarCipherService caesarCipherLatinService = new CaesarCipherLatinService();
+        ICaesarCipherService caesarCipherCyrilicService = new CaesarCipherCyrilicService();
 
         Runner runner = new Runner(cliService, fileService, caesarCipherLatinService, caesarCipherCyrilicService);
         if (args.length < CORRECT_COUNT_OF_ARGUMENTS) {
