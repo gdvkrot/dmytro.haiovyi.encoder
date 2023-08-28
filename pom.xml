@@ -17,18 +17,15 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>caesar.encoder</groupId>
-                <artifactId>dmytro.haiovyi.encoder</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
                 <configuration>
                     <archive>
                         <manifest>
                             <mainClass>dmytro.haiovyi.encoder.Solution</mainClass>
                         </manifest>
                     </archive>
-                    <descriptorRefs>
-                        <descriptorRef>CaesarCipherService</descriptorRef>
-                    </descriptorRefs>
                 </configuration>
             </plugin>
         </plugins>
